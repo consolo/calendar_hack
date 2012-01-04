@@ -1,5 +1,4 @@
-require 'i18n'
-require 'action_view'
+gem 'actionpack', '~> 2.3'
 
 module CoHack
   module CalendarHelper
