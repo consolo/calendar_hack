@@ -1,4 +1,4 @@
-gem 'actionpack', '~> 2.3'
+gem 'actionpack'
 
 module CoHack
   module CalendarHelper
