@@ -63,14 +63,15 @@ module CoHack
     def show_day_names
       #assume sunday-saturday
       return if @options[:hide_day_names]
-
-      tap '<tr class="day_names">' do |output|
-        (0..6).each do |day_index|
-          day_name = Date::DAYNAMES[day_index]
-          output << %(<th class="#{day_name.downcase}">#{day_name}</th>)
-        end
-        output << "</tr>"
+      
+      output = []
+      output << '<tr class="day_names">'
+      (0..6).each do |day_index|
+        day_name = Date::DAYNAMES[day_index]
+        output << "<th class='#{day_name.downcase}'>#{day_name}</th>"
       end
+      output << "</tr>"
+      output.join
     end
     
     class << self
