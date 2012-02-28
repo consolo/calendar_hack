@@ -5,25 +5,25 @@ module CoHack
     def calendar_hack(start_date, end_date, options={}, &block)
       calendar = Calendar.new(start_date, end_date, options)
       
-      concat(calendar.start_table)
+      safe_concat(calendar.start_table.html_safe)
       
-      concat("<tr>")
+      safe_concat("<tr>")
       start_index = calendar.start_date.wday - 1
 
-      (0..start_index).each{ |day_index| concat("<td></td>") }
+      (0..start_index).each{ |day_index| safe_concat("<td></td>") }
       
       calendar.days.each do |day| 
-        concat("<td id ='#{day.to_s.gsub("/", "_")}' class='day'>")
+        safe_concat("<td id ='#{day.to_s.gsub("/", "_")}' class='day'>")
         if block
           yield(day)
         else
-          concat(day.to_s)
+          safe_concat(day.to_s)
         end       
-        concat("</td>")
-        concat("</tr>\n<tr>") if day.wday == 6
+        safe_concat("</td>")
+        safe_concat("</tr>\n<tr>") if day.wday == 6
       end
       
-      concat(calendar.finish_table).html_safe
+      safe_concat(calendar.finish_table.html_safe).html_safe
     end
   end
  
