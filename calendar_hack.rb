@@ -23,7 +23,7 @@ module CoHack
         concat("</tr>\n<tr>") if day.wday == 6
       end
       
-      concat(calendar.finish_table)
+      concat(calendar.finish_table).html_safe
     end
   end
  
@@ -71,7 +71,7 @@ module CoHack
         output << "<th class='#{day_name.downcase}'>#{day_name}</th>"
       end
       output << "</tr>"
-      output.join
+      output.join.html_safe
     end
     
     class << self
